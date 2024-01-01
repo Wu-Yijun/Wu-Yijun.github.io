@@ -1,9 +1,7 @@
 import hljs from './include/highlight.js/es/core.js';
 import javascript from './include/highlight.js/es/languages/javascript.js';
 
-hljs.registerLanguage('javascript', javascript);
-
-function renderCode() {
+window.onload = () => {
     // Using require
     // const hljs = require('highlight.js/lib/core');
 
@@ -12,4 +10,3 @@ function renderCode() {
 
     hljs.highlightAll();
 }
-window.onload = renderCode();
