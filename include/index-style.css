@@ -43,3 +43,83 @@
     height: 1px;
     position: absolute;
 } */
+
+div.paragraphs-container div.code-container,
+div.code-container {
+    margin: 15px;
+    max-width: calc(100% - 30px);
+    margin-top: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: flex-start;
+    font-size: 1.3em;
+    overflow: hidden;
+    line-height: 1.2;
+}
+
+div.code-container+div.code-container {
+    margin-top: 0;
+}
+
+div.code-container div.span-list {
+    margin: 0;
+    display: block;
+    user-select: none;
+    background-color: #b0b0b08a;
+    box-shadow: 2px 0px 6px 1px #ababab;
+    z-index: 1;
+    padding-top: 13px;
+    padding-bottom: 15px;
+}
+
+div.code-container div.span-list div.code-line-number {
+    min-width: 20px;
+    height: 100%;
+    font-family: sans-serif;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: flex-end;
+    align-items: flex-end;
+    margin: 0 5px;
+    padding: 0;
+    justify-content: space-around;
+    user-select: none;
+}
+
+div.code-container div.span-list div.code-line-number span {
+    margin: 0;
+    height: 10px;
+    min-width: 10px;
+    text-align: right;
+}
+
+
+div.code-container pre.code {
+    flex-grow: 1;
+    max-width: calc(100% - 30px);
+    display: block;
+    overflow: hidden;
+    height: min-content;
+    margin: 0;
+}
+
+div.code-container pre.code code {
+    max-width: 100%;
+    /* overflow-x: scroll; */
+    padding: 14px;
+    background-color: #f8f8ff7f;
+}
+
+div.code-container.noscroll pre.code code {
+    white-space: pre-wrap;
+}
+
+.code-container div.line-number{
+    position: relative;
+    left: 0;
+    float: left;
+}

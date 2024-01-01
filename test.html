@@ -3,6 +3,8 @@
 
 <head>
     <title>主页 | HomePage</title>
+    <!-- <link href="./include/highlight.js/styles/default.min.css" rel="stylesheet" type="text/css"> -->
+    <link href="./include/highlight.js/styles/docco.css" rel="stylesheet" type="text/css">
     <link href="./include/layout-style.css" rel="stylesheet" type="text/css">
     <link href="./include/index-style.css" rel="stylesheet" type="text/css">
     <script src="./include/itemManager.js"></script>
@@ -94,6 +96,43 @@
                     <div>段落2内容3</div>
                 </div>
             </div>
+            <div class="code-container noscroll" type="javascript">
+                <pre>import hljs from './include/highlight.js/es/core.js';
+import javascript from './include/highlight.js/es/l anguages/javascript.js';
+
+// this is a line that is toooo oooooooooo oooooo ooooooo ooooooooooo looooooooo ooooooooooooooo ooooooooo ooooooooo oooong and it is sooooooooooooooooooo ooooooooooooooooooo coooooooooooooooooooo ooooooooooooooooooooo ooooooooooooooooooooooool
+window.onload = () => {
+    // Using require
+    // const hljs = require('highlight.js/lib/core');
+
+    // Load any languages you need
+    hljs.registerLanguage('javascript', javascript);
+
+    hljs.highlightAll();
+}</pre>
+            </div>
+            <div class="code-container" type="javascript">
+                <pre>import hljs from './include/highlight.js/es/core.js';
+import javascript from './include/highlight.js/es/l anguages/javascript.js';
+
+// this is a line that is toooo oooooooooo oooooo ooooooo ooooooooooo looooooooo ooooooooooooooo ooooooooo ooooooooo oooong and it is sooooooooooooooooooo ooooooooooooooooooo coooooooooooooooooooo ooooooooooooooooooooo ooooooooooooooooooooooool
+window.onload = () => {
+    // Using require
+    // const hljs = require('highlight.js/lib/core');
+
+    // Load any languages you need
+    hljs.registerLanguage('javascript', javascript);
+
+    hljs.highlightAll();
+}</pre>
+            </div>
+            <div class="paragraphs-container">
+                <div class="paragraphs">测试段落3
+                    <div>别废话，看代码：</div>
+                    <div class="code-container noscroll" id="loaded-code" type="cpp"></div>
+                    <div>代码后的正文</div>
+                </div>
+            </div>
             <div class="ending-container">
                 <div>以上。</div>
             </div>
@@ -116,6 +155,110 @@
     </div>
     <script>
         window.onload = InitializeLayout;
+    </script>
+    <script type="module">
+        import hljs from './include/highlight.js/es/core.js';
+        import javascript from './include/highlight.js/es/languages/javascript.js';
+        import cpp from './include/highlight.js/es/languages/cpp.js';
+
+        function addLineNumbers(element) {
+            let spans = element.firstElementChild.firstElementChild;
+            let codes = element.lastElementChild.firstElementChild;
+            var codeHeigth = window.getComputedStyle(codes).height;
+            spans.parentElement.style.height = codeHeigth;
+            if (codes.childElementCount == 0)
+                return;
+            if (!element.getAttribute("class").includes("noscroll")) {
+                let lines = codes.innerHTML.split("\n").length;
+                let i = 0;
+                while (i++ < lines) {
+                    let sp = document.createElement("span");
+                    sp.innerText = i;
+                    spans.appendChild(sp);
+                }
+                return;
+            }
+            // 方法：把每一个裸露的文本都用 span 包裹起来，然后计算 y 高度
+            let str = "";
+            for (let cd of codes.childNodes) {
+                if (cd instanceof Text) str += `<span>${cd.data}</span>`;
+                else str += cd.outerHTML;
+            }
+            codes.innerHTML = str;
+            codeHeigth = 0;
+            function refreshLineNumber() {
+                let nowHei = window.getComputedStyle(codes).height;
+                if (nowHei == codeHeigth)
+                    return;
+                else
+                    codeHeigth = nowHei
+
+                spans.parentElement.style.height = codeHeigth;
+                let str = "";
+                // 现在没有裸露的文本的，对于每一个 span 计算高度和换行符数量。
+                let lineHeight = parseFloat(window.getComputedStyle(codes.firstElementChild, null).lineHeight);
+                let lastTop = parseFloat(codes.firstElementChild.offsetTop) - lineHeight;
+                let leftNumber = 1, lineNumber = 1;
+                for (let cd of codes.childNodes) {
+                    let lines = Math.round((cd.offsetTop - lastTop) / lineHeight);
+                    lastTop = cd.offsetTop;
+                    let newls = cd.innerHTML.split("\n").length - 1;
+                    // console.log(newls, lines ,cd.innerHTML);
+                    while (lines-- > 0.5) {
+                        if (leftNumber > 0.5) {
+                            leftNumber--;
+                            // console.log();
+                            str += `<span>${lineNumber++}</span>`
+                            continue;
+                        }
+                        str += `<span> </span>`
+                    }
+                    leftNumber += newls;
+                }
+                let lines = Math.round(parseFloat(codeHeigth) / lineHeight) - 1;
+                lines -= Math.round((lastTop - codes.firstElementChild.offsetTop) / lineHeight);
+                while (lines-- > 0.5) {
+                    if (leftNumber > 0.5) {
+                        leftNumber--;
+                        // console.log();
+                        str += `<span>${lineNumber++}</span>`
+                        continue;
+                    }
+                    str += `<span> </span>`
+                }
+                spans.innerHTML = str;
+                console.log("resized");
+            }
+            refreshLineNumber();
+            window.addEventListener("resize", () => setTimeout(refreshLineNumber, 1000));
+        }
+
+        window.onload = () => {
+            hljs.registerLanguage('javascript', javascript);
+            hljs.registerLanguage('cpp', cpp);
+
+            let lan = "cpp";
+            let dom = document.getElementById("loaded-code");
+            fetch("./assets/test_code.cpp")
+                .then((response) => response.text())
+                .then((data) => {
+                    let str = hljs.highlight(data, { language: lan }).value;
+                    dom.innerHTML = `<div class="span-list"><div class="code-line-number"></div></div>` +
+                        `<pre class="code"><code class="language-${lan} hljs">${str}</code></pre>`;
+                    addLineNumbers(dom);
+                });
+            // Using require
+            // const hljs = require('highlight.js/lib/core');
+            for (let e of document.getElementsByClassName("code-container")) {
+                let lan = e.getAttribute("type");
+                if (!e.hasChildNodes() || e.firstElementChild.tagName != 'PRE')
+                    continue;
+                let str = hljs.highlight(e.firstElementChild.innerHTML, { language: lan }).value;
+                e.innerHTML = `<div class="span-list"><div class="code-line-number"></div></div>` +
+                    `<pre class="code"><code class="language-${lan} hljs">${str}</code></pre>`;
+                addLineNumbers(e);
+            }
+        }
     </script>
 </body>
 

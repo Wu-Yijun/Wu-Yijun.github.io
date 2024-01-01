@@ -168,12 +168,12 @@ body {
     margin: 10px;
 }
 
-.paragraphs-container div.paragraphs {
+.paragraphs-container .paragraphs {
     margin-top: 10px;
     font-weight: bolder;
 }
 
-.paragraphs-container div.paragraphs div {
+.paragraphs-container .paragraphs div {
     font-weight: normal;
     margin-top: 4px;
 }
@@ -182,11 +182,11 @@ body {
     text-indent: 2em;
 }
 
-.paragraphs-container.zh div.paragraphs div {
+.paragraphs-container.zh .paragraphs div {
     text-indent: 2em;
 }
 
-.paragraphs-container div.paragraphs.zh div {
+.paragraphs-container .paragraphs.zh div {
     text-indent: 2em;
 }
 
