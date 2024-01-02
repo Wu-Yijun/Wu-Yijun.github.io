@@ -57,10 +57,13 @@ div.code-container {
     font-size: 1.3em;
     overflow: hidden;
     line-height: 1.2;
+    transition: all ease-out 1s;
+    text-indent: 0;
 }
 
 div.code-container+div.code-container {
     margin-top: 0;
+    text-indent: 0;
 }
 
 div.code-container div.span-list {
@@ -72,6 +75,8 @@ div.code-container div.span-list {
     z-index: 1;
     padding-top: 13px;
     padding-bottom: 15px;
+    transition: inherit;
+    text-indent: 0;
 }
 
 div.code-container div.span-list div.code-line-number {
@@ -88,6 +93,8 @@ div.code-container div.span-list div.code-line-number {
     padding: 0;
     justify-content: space-around;
     user-select: none;
+    transition: inherit;
+    text-indent: 0;
 }
 
 div.code-container div.span-list div.code-line-number span {
@@ -95,6 +102,7 @@ div.code-container div.span-list div.code-line-number span {
     height: 10px;
     min-width: 10px;
     text-align: right;
+    text-indent: 0;
 }
 
 
@@ -105,6 +113,8 @@ div.code-container pre.code {
     overflow: hidden;
     height: min-content;
     margin: 0;
+    transition: inherit;
+    text-indent: 0;
 }
 
 div.code-container pre.code code {
@@ -112,14 +122,18 @@ div.code-container pre.code code {
     /* overflow-x: scroll; */
     padding: 14px;
     background-color: #f8f8ff7f;
+    transition: inherit;
+    text-indent: 0;
 }
 
 div.code-container.noscroll pre.code code {
     white-space: pre-wrap;
+    text-indent: 0;
 }
 
 .code-container div.line-number{
     position: relative;
     left: 0;
     float: left;
+    text-indent: 0;
 }

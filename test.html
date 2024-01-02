@@ -126,11 +126,11 @@ window.onload = () => {
     hljs.highlightAll();
 }</pre>
             </div>
-            <div class="paragraphs-container">
+            <div class="paragraphs-container zh">
                 <div class="paragraphs">测试段落3
                     <div>别废话，看代码：</div>
                     <div class="code-container noscroll" id="loaded-code" type="cpp"></div>
-                    <div>代码后的正文</div>
+                    <div>这是在正文中的代码，而非单独的代码块。且使用了缩进，未影响代码。代码后的一些正文...</div>
                 </div>
             </div>
             <div class="ending-container">
@@ -154,7 +154,7 @@ window.onload = () => {
         <div>看不见我，看不见我，我是背景</div>
     </div>
     <script>
-        window.onload = InitializeLayout;
+        window.addEventListener("load", InitializeLayout);
     </script>
     <script type="module">
         import hljs from './include/highlight.js/es/core.js';
@@ -233,7 +233,7 @@ window.onload = () => {
             window.addEventListener("resize", () => setTimeout(refreshLineNumber, 1000));
         }
 
-        window.onload = () => {
+        window.addEventListener("load", () => {
             hljs.registerLanguage('javascript', javascript);
             hljs.registerLanguage('cpp', cpp);
 
@@ -258,7 +258,7 @@ window.onload = () => {
                     `<pre class="code"><code class="language-${lan} hljs">${str}</code></pre>`;
                 addLineNumbers(e);
             }
-        }
+        });
     </script>
 </body>
 

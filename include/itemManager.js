@@ -227,4 +227,13 @@ function InitializeLayout() {
     // }
 
     TagManager.loadTags();
+
+    document.getElementsByClassName("tool-bar-container")[0].addEventListener("mouseenter", () => {
+        var myEvent = new Event('resize');
+        window.dispatchEvent(myEvent);
+    });
+    document.getElementsByClassName("tool-bar-container")[0].addEventListener("mouseleave", () => {
+        var myEvent = new Event('resize');
+        window.dispatchEvent(myEvent);
+    });
 }

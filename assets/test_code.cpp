@@ -5,12 +5,13 @@
  * @date 2024-1-1
  ***/
 using namespace std;
+typedef long long LL;
 
 #define STR1(x) "He" #x #x "o"
 constexpr char kStr2[] = "world";
 struct Sign {
     char sign;
-    const int nextline;
+    const LL nextline;
     static const bool yes = true;
     vector<int> a;
     int operator()() const { return 55 + yes; }
