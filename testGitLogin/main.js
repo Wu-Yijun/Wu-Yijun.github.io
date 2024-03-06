@@ -1,11 +1,15 @@
 import myFloatingNotify from "/include/MyFloatingNotify.js"
 
 const oauthInfo = {
+    Scope: "public_repo",
+    /** Release */
     ClientID: "dbcd04607ec374d71003",
     ClientSecret: "10d91bdc6fc31ebccc2cf4a9a8f64365e78e24eb",
     Url: "https://wu-yijun.github.io/testGitLogin/main.html",
+    /** Debug */
+    // ClientID: "16fbb434c9ac82d2bb67",
+    // ClientSecret: "37b893febb019776f791e3db171b9fcf6d0e9fcc",
     // Url: "http://localhost:5500/testGitLogin/main.html",
-    Scope: "public_repo",
 };
 
 window.onload = () => {
@@ -61,6 +65,7 @@ function getAuthorization(code) {
                 myFloatingNotify("access_token = " + info.access_token);
                 localStorage.setItem("access_token", info.access_token);
                 location.href = oauthInfo.Url;
+                getInfo(info.access_token);
             }
         }
     }
@@ -96,7 +101,7 @@ function getInfo(access_token, retried = 3) {
                 }
                 return;
             } else {
-                myFloatingNotify("Successfully get info!");
+                myFloatingNotify("Successfully get info!", 10 * 1000);
             }
         }
     }
