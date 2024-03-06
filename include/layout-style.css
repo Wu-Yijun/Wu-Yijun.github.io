@@ -205,6 +205,35 @@ body {
 }
 
 
+
+.comment-container {
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    align-content: center;
+}
+.comment-container .comment-header{
+    width: 100%;
+    padding: 10px;
+    align-content: center;
+    border-bottom: 1px solid #777;
+    background-color: #7772;
+    font-weight: bold;
+}
+.comment-container .comment-contents{
+    width: 100%;
+    padding: 10px;
+    align-content: center;
+    min-height: 10px;
+}
+.comment-container .comment-footer{
+    width: 100%;
+    padding: 10px;
+    align-content: center;
+}
+
+
+
 .page-foot-container::before {
     content: '';
     display: inline-block;
