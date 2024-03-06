@@ -3,7 +3,7 @@ import myFloatingNotify from "/include/MyFloatingNotify.js"
 const oauthInfo = {
     ClientID: "dbcd04607ec374d71003",
     ClientSecret: "10d91bdc6fc31ebccc2cf4a9a8f64365e78e24eb",
-    Url: "http://wu-yijun.github.io/testGitLogin/main.html",
+    Url: "https://wu-yijun.github.io/testGitLogin/main.html",
     // Url: "http://localhost:5500/testGitLogin/main.html",
     Scope: "public_repo",
 };
