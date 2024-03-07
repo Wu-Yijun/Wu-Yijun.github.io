@@ -46,6 +46,11 @@ function POST(url, header, data, resposeFun) {
 }
 
 window.onload = () => {
+    document.getElementById("SubmitComment").onclick = () => {
+        // myFloatingNotify(document.getElementById("CommentArea").value);
+        CreateComment(access_token, document.getElementById("CommentArea").value);
+        // CreateComment(access_token, "Hello, world! --From Javascript.");
+    };
     let access_token = localStorage.getItem("access_token");
     if (access_token && (typeof access_token === "string" || access_token instanceof String) && access_token.length > 0) {
         getInfo(access_token);
