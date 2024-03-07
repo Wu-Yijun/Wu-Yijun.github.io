@@ -1,7 +1,13 @@
-import myFloatingNotify from "/include/MyFloatingNotify.js"
+import myFloatingNotify from "/include/MyFloatingNotify.js";
 
 const oauthInfo = {
+    Owner: "Wu-Yijun",
+    Repo: "git-comment",
+    Issue: "2",
+    CorsUrl: "https://cors-anywhere.azm.workers.dev/",
+    // CorsUrl: "https://cors-anywhere.herokuapp.com/",
     Scope: "public_repo",
+
     /** Release */
     ClientID: "dbcd04607ec374d71003",
     ClientSecret: "10d91bdc6fc31ebccc2cf4a9a8f64365e78e24eb",
@@ -12,9 +18,36 @@ const oauthInfo = {
     // Url: "http://localhost:5500/testGitLogin/main.html",
 };
 
+const GithubAuthUrl = "https://github.com/login/oauth/authorize?";
+const GithubAccessTokenUrl = "https://github.com/login/oauth/access_token";
+
+function POST(url, header, data, resposeFun) {
+    var request = new XMLHttpRequest();
+    request.open("POST", url, true);
+    request.timeout = 0;
+    request.onreadystatechange = function handleLoad() {
+        if (!request || request.readyState !== 4) {
+            return;
+        }
+        // The request errored out and we didn't get a response, this will be
+        // handled by onerror instead
+        // With one exception: request that using file: protocol, most browsers
+        // will return status as 0 even though it's a successful request
+        if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
+            return;
+        }
+        resposeFun(request);
+        request = null;
+    };
+    for (let i in header) {
+        request.setRequestHeader(i, header[i]);
+    }
+    request.send(data);
+}
+
 window.onload = () => {
     let access_token = localStorage.getItem("access_token");
-    if (access_token) {
+    if (access_token && (typeof access_token === "string" || access_token instanceof String) && access_token.length > 0) {
         getInfo(access_token);
         return;
     }
@@ -33,43 +66,54 @@ window.onload = () => {
     } else {
         enableLogin();
     }
-}
+};
 
 function enableLogin() {
-    let nd = document.createElement("div")
-    nd.innerHTML = "Click to login to Github!"
+    let nd = document.createElement("div");
+    nd.innerHTML = "Click to login to Github!";
     document.body.appendChild(nd);
     nd.onclick = () => {
-        location.href = `https://github.com/login/oauth/authorize?client_id=${oauthInfo.ClientID}&redirect_uri=${oauthInfo.Url}&scope=${oauthInfo.Scope}`
-    }
+        location.href = GithubAuthUrl + `client_id=${oauthInfo.ClientID}&redirect_uri=${oauthInfo.Url}&scope=${oauthInfo.Scope}`;
+    };
     myFloatingNotify("You can login to github");
 }
 
 function getAuthorization(code) {
-    var xhr = new XMLHttpRequest();
-    const url = "https://cors-anywhere.herokuapp.com/" +
-        "https://github.com/login/oauth/access_token?" +
-        `client_id=${oauthInfo.ClientID}&` +
-        `client_secret=${oauthInfo.ClientSecret}&` +
-        `code=${code}`;
-    xhr.open("POST", url);
-    // 第三步： 设置Content-Type属性 （这一步是固定的写法）
-    xhr.setRequestHeader('Accept', 'application/json');
-    xhr.setRequestHeader('Conten-Type', 'application/json');
-    xhr.setRequestHeader("Access-Control-Allow-Origin", "http://localhost:5500");
-    // 第五步：监听onreadystatechange事件
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            const info = JSON.parse(xhr.responseText);
-            if (info.token_type == "bearer") {
-                myFloatingNotify("access_token = " + info.access_token);
-                localStorage.setItem("access_token", info.access_token);
-                location.href = oauthInfo.Url;
-                getInfo(info.access_token);
-            }
+    // var request = new XMLHttpRequest();
+    const url = oauthInfo.CorsUrl + GithubAccessTokenUrl;
+    // request.open("POST", url, true);
+    // request.timeout = 0;
+    // // 第五步：监听onreadystatechange事件
+    // request.onreadystatechange = function handleLoad() {
+    //     if (!request || request.readyState !== 4) {
+    //         return;
+    //     }
+    //     // The request errored out and we didn't get a response, this will be
+    //     // handled by onerror instead
+    //     // With one exception: request that using file: protocol, most browsers
+    //     // will return status as 0 even though it's a successful request
+    //     if (request.status === 0 && !(request.responseURL && request.responseURL.indexOf('file:') === 0)) {
+    //         return;
+    //     }
+    function handleLoad(request) {
+        const info = JSON.parse(request.responseText);
+        if (info.token_type == "bearer") {
+            myFloatingNotify("access_token = " + info.access_token);
+            localStorage.setItem("access_token", info.access_token);
+            location.href = oauthInfo.Url;
+            getInfo(info.access_token);
         }
-    }
-    xhr.send();
+    };
+    const header = {
+        "Accept": "application/json",
+        "Content-Type": "application/json;charset=utf-8",
+    };
+    const content = JSON.stringify({
+        code: code,
+        client_id: oauthInfo.ClientID,
+        client_secret: oauthInfo.ClientSecret,
+    });
+    POST(url, header, content, handleLoad);
 }
 
 function getInfo(access_token, retried = 3) {
@@ -102,7 +146,31 @@ function getInfo(access_token, retried = 3) {
                 return;
             } else {
                 myFloatingNotify("Successfully get info!", 10 * 1000);
+                document.getElementById("SubmitComment").onclick = () => {
+                    // myFloatingNotify(document.getElementById("CommentArea").value);
+                    CreateComment(access_token, document.getElementById("CommentArea").value);
+                    // CreateComment(access_token, "Hello, world! --From Javascript.");
+                };
+                return;
             }
         }
-    }
+    };
+}
+
+
+// import { Octokit } from "https://esm.sh/octokit";
+
+function CreateComment(access_token, content) {
+    const url = "https://api.github.com/repos/Wu-Yijun/git-comment/issues/2/comments";
+    const header = {
+        "Accept": "application/vnd.github.v3.full+json",
+        "Authorization": "token " + access_token,
+        "Content-Type": "application/json;charset=utf-8",
+    };
+    const data = JSON.stringify({
+        body: content,
+    });
+    POST(url, header, data, (request) => {
+        console.log(request);
+    });
 }
