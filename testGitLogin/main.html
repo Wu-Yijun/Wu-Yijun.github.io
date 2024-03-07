@@ -12,6 +12,13 @@
     <script src="./main.js" type="module"></script>
     <textarea id="CommentArea"></textarea>
     <button id="SubmitComment">Add comment</button>
+    <script>
+        document.getElementById("SubmitComment").onclick = () => {
+            // myFloatingNotify(document.getElementById("CommentArea").value);
+            CreateComment(access_token, document.getElementById("CommentArea").value);
+            // CreateComment(access_token, "Hello, world! --From Javascript.");
+        };
+    </script>
     <!-- <div id="gitalk-container"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
     <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>

@@ -146,11 +146,6 @@ function getInfo(access_token, retried = 3) {
                 return;
             } else {
                 myFloatingNotify("Successfully get info!", 10 * 1000);
-                document.getElementById("SubmitComment").onclick = () => {
-                    // myFloatingNotify(document.getElementById("CommentArea").value);
-                    CreateComment(access_token, document.getElementById("CommentArea").value);
-                    // CreateComment(access_token, "Hello, world! --From Javascript.");
-                };
                 return;
             }
         }
