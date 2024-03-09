@@ -139,14 +139,42 @@ window.onload = () => {
             <div class="comment-container">
                 <div class="comment-header">
                     <div>评论区</div>
+                    <div class="Github-Login cur-ptr">
+                        <!-- if you enable commentManager.config.gitinfo.drawLoginIcon=true -->
+                        <!-- you don't need to fill contents -->
+                        <!-- js will generate automatically -->
+                    </div>
                 </div>
                 <div class="comment-contents">
+                    <!-- needless to fill contents -->
+                    <!-- js will generate automatically -->
+                </div>
+                <div class="comment-textarea">
                     <!-- needless to fill contents -->
                     <!-- js will generate automatically -->
                 </div>
                 <div class="comment-footer">
                     <div>评论区末尾</div>
                 </div>
+                <script type="module">
+                    import commentManager from '/include/comment/commentManager.mjs';
+                    const cm = new commentManager({
+                        htmlString: await (await fetch('/include/comment/comment-item.html')).text(),
+                        htmlTextarea: await (await fetch('/include/comment/comment-textarea-item.html')).text(),
+                        gitinfo: {
+                            Owner: 'Wu-Yijun',
+                            Repo: 'git-comment',
+                            Issue: '4',
+                            CorsUrl: 'https://cors-anywhere.azm.workers.dev/',
+                            Scope: 'public_repo',
+                            GitLoginClass: 'Github-Login',
+                            drawLoginIcon: true,
+                            ClientID: "dbcd04607ec374d71003",
+                            ClientSecret: "10d91bdc6fc31ebccc2cf4a9a8f64365e78e24eb",
+                            Url: location.href,
+                        },
+                    });
+                </script>
             </div>
             <div class="page-foot-container">
                 <div>文档末尾 </div>
@@ -203,7 +231,7 @@ window.onload = () => {
                 if (nowHei == codeHeigth)
                     return;
                 else
-                    codeHeigth = nowHei
+                    codeHeigth = nowHei;
 
                 spans.parentElement.style.height = codeHeigth;
                 let str = "";
@@ -220,10 +248,10 @@ window.onload = () => {
                         if (leftNumber > 0.5) {
                             leftNumber--;
                             // console.log();
-                            str += `<span>${lineNumber++}</span>`
+                            str += `<span>${lineNumber++}</span>`;
                             continue;
                         }
-                        str += `<span> </span>`
+                        str += `<span> </span>`;
                     }
                     leftNumber += newls;
                 }
@@ -233,10 +261,10 @@ window.onload = () => {
                     if (leftNumber > 0.5) {
                         leftNumber--;
                         // console.log();
-                        str += `<span>${lineNumber++}</span>`
+                        str += `<span>${lineNumber++}</span>`;
                         continue;
                     }
-                    str += `<span> </span>`
+                    str += `<span> </span>`;
                 }
                 spans.innerHTML = str;
                 console.log("resized");
