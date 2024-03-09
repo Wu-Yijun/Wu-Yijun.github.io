@@ -4,7 +4,7 @@
 <head>
     <title>主页 | HomePage</title>
     <!-- <link href="./include/highlight.js/styles/default.min.css" rel="stylesheet" type="text/css"> -->
-    <link href="./include/highlight.js/styles/docco.css" rel="stylesheet" type="text/css">
+    <link href="./include-outer/highlight.js/styles/docco.css" rel="stylesheet" type="text/css">
     <link href="./include/layout-style.css" rel="stylesheet" type="text/css">
     <link href="./include/index-style.css" rel="stylesheet" type="text/css">
     <script src="./include/itemManager.js"></script>
@@ -97,7 +97,7 @@
                 </div>
             </div>
             <div class="code-container noscroll" type="javascript">
-                <pre>import hljs from './include/highlight.js/es/core.js';
+                <pre>import hljs from './include-outer/highlight.js/es/core.js';
 import javascript from './include/highlight.js/es/l anguages/javascript.js';
 
 // this is a line that is toooo oooooooooo oooooo ooooooo ooooooooooo looooooooo ooooooooooooooo ooooooooo ooooooooo oooong and it is sooooooooooooooooooo ooooooooooooooooooo coooooooooooooooooooo ooooooooooooooooooooo ooooooooooooooooooooooool
@@ -169,9 +169,9 @@ window.onload = () => {
         window.addEventListener("load", InitializeLayout);
     </script>
     <script type="module">
-        import hljs from './include/highlight.js/es/core.js';
-        import javascript from './include/highlight.js/es/languages/javascript.js';
-        import cpp from './include/highlight.js/es/languages/cpp.js';
+        import hljs from '/include-outer/highlight.js/es/core.js';
+        import javascript from '/include-outer/highlight.js/es/languages/javascript.js';
+        import cpp from '/include-outer/highlight.js/es/languages/cpp.js';
 
         function addLineNumbers(element) {
             let spans = element.firstElementChild.firstElementChild;

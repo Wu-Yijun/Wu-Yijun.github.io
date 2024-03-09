@@ -1,5 +1,5 @@
-import hljs from '../node_modules/highlight.js/es/core.js';
-import javascript from '../node_modules/highlight.js/es/languages/javascript.js';
+import hljs from '/include-outer/highlight.js/es/core.js';
+import javascript from '/include-outer/highlight.js/es/languages/javascript.js';
 
 hljs.registerLanguage('javascript', javascript);
 

@@ -1,5 +1,5 @@
-import hljs from './include/highlight.js/es/core.js';
-import javascript from './include/highlight.js/es/languages/javascript.js';
+import hljs from '/include-outer/highlight.js/es/core.js';
+import javascript from '/include-outer/highlight.js/es/languages/javascript.js';
 
 window.onload = () => {
     // Using require
