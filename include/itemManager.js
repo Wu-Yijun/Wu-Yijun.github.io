@@ -103,16 +103,25 @@ class TagManager {
         }
 
 
-        document.getElementById("test2").appendChild(createTag('标签1', "#7f7f7f30"));
-        document.getElementById("test2").appendChild(createTag('标签2'));
-        document.getElementById("test2").appendChild(createTag('标签3'));
-        document.getElementById("test2").appendChild(createTag('标签4'));
-        document.getElementById("test2").appendChild(createTag('标签5'));
-        document.getElementById("test2").appendChild(createTag('标签6'));
-        document.getElementById("test2").appendChild(createTag('标签7'));
-        document.getElementById("test2").appendChild(createTag('标签8'));
-        document.getElementById("test2").appendChild(createTag('标签9'));
-        document.getElementById("test2").appendChild(createTag('标签10'));
+        document.getElementById("test2").appendChild(createTag('博客', "#ff7f7f30"));
+        document.getElementById("test2").appendChild(createTag('网页设计', "#7fff7f30"));
+        document.getElementById("test2").appendChild(createTag('Javascript', "#7f7fff30"));
+        document.getElementById("test2").appendChild(createTag('CSS', "#7f7fff30"));
+        document.getElementById("test2").appendChild(createTag('评论区', "#ffff7f30"));
+        document.getElementById("test2").appendChild(createTag('Gitalk', "#7fcfff30"));
+        document.getElementById("test2").appendChild(createTag('设计理念', "#4fdfaf30"));
+        // document.getElementById("test2").appendChild(createTag('', "#7f7f7f30"));
+        // document.getElementById("test2").appendChild(createTag('标签2'));
+        // document.getElementById("test2").appendChild(createTag('标签3'));
+        // document.getElementById("test2").appendChild(createTag('标签4'));
+        // document.getElementById("test2").appendChild(createTag('标签5'));
+        // document.getElementById("test2").appendChild(createTag('标签6'));
+        // document.getElementById("test2").appendChild(createTag('标签7'));
+        // document.getElementById("test2").appendChild(createTag('标签8'));
+        // document.getElementById("test2").appendChild(createTag('标签9'));
+        // document.getElementById("test2").appendChild(createTag('标签10'));
+        document.getElementById("test3").appendChild(createTag('测试', "#ff8c0930"));
+        document.getElementById("test3").appendChild(createTag('未开放', "#f2230060"));
 
     }
 
@@ -147,7 +156,7 @@ class ItemEntry {
 
 function InitializeLayout() {
 
-    ItemEntry.ItemEntryTest();
+    // ItemEntry.ItemEntryTest();
     MyStaticConsts.tag = new TagManager();
 
     // no-more-foot scroll to show

@@ -137,3 +137,22 @@ div.code-container.noscroll pre.code code {
     float: left;
     text-indent: 0;
 }
+
+a{
+    color: cornflowerblue;
+    text-decoration: none;
+}
+a:visited{
+    color: #4d5fac
+}
+a:hover{
+    text-decoration: underline;
+    color: #306ad1;
+}
+
+bold{
+    font-weight: bold;
+}
+italic{
+    font-style: italic;
+}

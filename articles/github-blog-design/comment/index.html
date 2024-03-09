@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>评论区开放啦 | The comment function is opening</title>
+    <link href="/include/layout-style.css" rel="stylesheet" type="text/css">
+    <link href="/include/index-style.css" rel="stylesheet" type="text/css">
+    <link href="/include/comment/comment-style.css" rel="stylesheet" type="text/css">
+    <script src="/include/itemManager.js"></script>
+</head>
+
+<body>
+    <div class="body-container">
+        <div class="tool-bar-container">
+            <div class="tool-bar-contents">
+                <div class="menu-icon click-to-switch"></div>
+                <div class="homepage click-to-switch"></div>
+                <div class="homepage click-to-switch"></div>
+                <div class="homepage click-to-switch"></div>
+            </div>
+            <div class="tool-bar-contents-detailed"></div>
+        </div>
+        <div class="main-contents-container">
+            <div class="header-container">
+                <div>评论区功能开启</div>
+                <p class="zh">真没想到这是我开放的第一个页面</p>
+            </div>
+            <div class="title-container">
+                <div>只是按惯例放一个目录</div>
+            </div>
+            <div class="item-container">
+                <div class="item-entry">
+                    <data value="???"></data>
+                    <div class="item-header">评论区能有什么目录呢</div>
+                    <div class="tag-list" id="test2"></div>
+                    <div class="item-description zh">
+                        现在我还没完成Blog的框架的全部内容,因此只把现有的部分放上来了,
+                        有些地方显得很粗糙(比如侧边栏),但没关系,
+                        基本功能已经完成了,已经可以对用户开放了(比如此页面)
+                    </div>
+                </div>
+                <div class="item-entry">
+                    <data value="???"></data>
+                    <div class="item-header">点我转跳到测试评论区(未开放)</div>
+                    <div class="tag-list" id="test3"></div>
+                    <div class="item-description zh">
+                        其实我还没搞好,就先放着了.
+                    </div>
+                </div>
+                <div class="item-entry" onclick="toogleDarkmode()">
+                    <script>
+                        var darked = false;
+                        function toogleDarkmode() {
+                            if (darked = !darked) {
+                                document.body.style.backgroundColor = 'black';
+                                document.body.style.color = 'white';
+                            } else {
+                                document.body.style = {};
+                            }
+                        }
+                    </script>
+                    <data value="???"></data>
+                    <div class="item-header">点我切换深色模式与浅色模式</div>
+                    <div class="item-description">
+                        这是为了展示合理设置的透明度可以保持深色和浅色模式下页面均可正常显示.
+                        <div>仅需设置<code> body{ background-color: black; color: white; }</code></div>
+                    </div>
+                </div>
+                <div class="item-entry" onclick="shrink()">
+                    <div class="item-description zh">
+                        下面的文本布局太宽了, 点我收缩页面(越点越窄)
+                    </div>
+                    <script>
+                        let shrinked = 50;
+                        function shrink() {
+                            Array.prototype.forEach.call(document.getElementsByClassName("paragraphs-container"), (dom) => {
+                                dom.style.marginLeft = dom.style.marginRight = `${shrinked += 50}px`;
+                            });
+                        }
+                    </script>
+                </div>
+            </div>
+            <div class="paragraphs-container">
+                <div class="paragraphs zh"> 关于评论区
+                    <div>
+                        因为我目前的打算是开放这个半成品的个人博客, 而开放的目的是得到互动和反馈,
+                        那作为可以互动的评论区自然就充当了载体的功能. Github Pages 托管的是静态页面,
+                        因此网页都只有前端, 想要做到与服务器的交互, 只能使用静态代码与第三方 API 接口,
+                    </div>
+                    <div>
+                        为了在静态页面上创造出评论功能, 有人想出了利用 Github Issues 来构建静态页面评论区的做法.
+                        一个最为经典的工具就是 <bold><a href="https://gitalk.github.io">Gitalk</a></bold> ,
+                        它和我目前的功能基本不相上下, <bold>优点</bold>是在 Github Issues 里存储的全部信息都是<bold>明文</bold>可见的,
+                        且可以在GitHub<bold>网页任意删除修改</bold> Issue comment 的内容, 并且布局经过精心设计比我的好看;
+                        但是也存在不少不足, 我的评论区 (有些功能还在建设中, 因此是预期功能) 的<bold>优势</bold>在于:
+                        除了评论文本, 还存储了很多元信息, 因此可以支持多种<bold>扩展</bold>, 包括但不限于
+                        a)<bold>引用</bold>之前的评论或正文内容 b)使用原生 html 要素, 因此可以自定义<bold>布局</bold>
+                        c)启用了各种安全或不安全的 CSS 和 JS 内容等 d)直接从其它网页复制带格式的富文本.
+                        此外, 还增添了对于被引评论的<bold>转跳</bold>功能, 最重要一点是, 我还预计设置一个<bold>用户中心</bold>功能,
+                        是独立于 Github 的本网站内部用户信息 (当然, 肯定是关联到 GitHub 账号的) ,
+                        这样用户的<bold>昵称头像</bold>之类的都可以自定义, 甚至可以自定义一个用户首页.
+                        此外,还有
+                    </div>
+                    <div>
+                        总的来说, 我的评论区在很多功能实现上都学习效仿了 Gitalk , 但是具有更强的<bold>可扩展性和灵活性</bold>
+                    </div>
+                </div>
+                <div class="paragraphs zh"> 关于为什么我要开放评论区
+                    <div>
+                        我上个学期(23~24秋)在写一个游戏, 当时使用的是 <bold>OpenGL</bold> + <bold>C++</bold>
+                        手写渲染引擎. 本学期我在 UC Berkeley 访学, 连接到家里台式机的远程桌面<bold>延迟太高了, 代码写起来很不爽</bold>,
+                        而且我任务 C++ 用起来不安全, 想尝试一下 <bold>Rust</bold>. 因此, 我本学期准备写一个简单些的独立游戏,
+                        <italic>如果有机会能放到 Steam 上卖钱更好</italic>.
+                    </div>
+                    <div>
+                        "既然如此, 不如将游戏的开发过程写作博客, 作为我的博客的一个开端" 这样想着, 我
+                    </div>
+                </div>
+            </div>
+            <div class="ending-container">
+                <div>正文到此结束, 下面是评论区</div>
+            </div>
+            <div class="comment-container">
+                <div class="comment-header">
+                    <div>评论区</div>
+                    <div class="Github-Login cur-ptr"> </div>
+                </div>
+                <div class="comment-contents"> </div>
+                <div class="comment-textarea"> </div>
+                <div class="comment-footer">
+                    <div>评论区末尾</div>
+                </div>
+                <script type="module">
+                    // import commentManager from '/include/comment/commentManager.mjs';
+                    // const cm = new commentManager({
+                    //     htmlString: await (await fetch('/include/comment/comment-item.html')).text(),
+                    //     htmlTextarea: await (await fetch('/include/comment/comment-textarea-item.html')).text(),
+                    //     gitinfo: {
+                    //         Issue: '4',
+                    //         drawLoginIcon: true,
+                    //     },
+                    // });
+                </script>
+            </div>
+            <div class="page-foot-container">
+                <div>文档末尾 </div>
+                <div>Copyright@Rimor Aluria</div>
+                <div>All rights reserved</div>
+            </div>
+            <div class="no-more-foot">
+                <div>没有更多了。</div>
+            </div>
+        </div>
+    </div>
+    <div class="background-container" style="opacity: 0.2;">
+        <div>背景我还没做,就撮合着看吧</div>
+        <div>背景我还没做,就撮合看吧</div>
+        <div>背景我还没做,撮合看吧</div>
+        <div>背景还没做,就撮合吧</div>
+        <div>背景还没做,撮合吧</div>
+        <div>没背景,撮合着吧</div>
+        <div>没做,背景随意</div>
+        <div>没背景,随意</div>
+        <div>没,撮合吧</div>
+        <div>对,没做</div>
+        <div>没有,</div>
+        <div>背景</div>
+        <div>没</div>
+        <div>了</div>
+        <div>。</div>
+        <div>.</div>
+    </div>
+    <script>
+        window.addEventListener("load", InitializeLayout);
+    </script>
+</body>
+
+</html>
