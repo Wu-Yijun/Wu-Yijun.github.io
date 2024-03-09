@@ -113,14 +113,13 @@ class GitControl {
     drawLoginIcon: false,
 
     /** Release */
-    // ClientID: "dbcd04607ec374d71003",
-    // ClientSecret: "10d91bdc6fc31ebccc2cf4a9a8f64365e78e24eb",
-    // Url: "https://wu-yijun.github.io/testGitLogin/main.html",
+    ClientID: 'dbcd04607ec374d71003',
+    ClientSecret: '10d91bdc6fc31ebccc2cf4a9a8f64365e78e24eb',
+    Url: location.href,
     /** Debug */
-    ClientID: '16fbb434c9ac82d2bb67',
-    ClientSecret: '37b893febb019776f791e3db171b9fcf6d0e9fcc',
-    // Url: "http://localhost:5500/testGitLogin/main.html",
-    Url: 'http://localhost:5500/main.html',
+    // ClientID: '16fbb434c9ac82d2bb67',
+    // ClientSecret: '37b893febb019776f791e3db171b9fcf6d0e9fcc',
+    // Url: 'http://localhost:5500/main.html',
   };
   static GithubAuthUrl = 'https://github.com/login/oauth/authorize';
   static GithubAccessTokenUrl = 'https://github.com/login/oauth/access_token';
@@ -223,10 +222,10 @@ class GitControl {
               location.href = GitControl.GithubAuthUrl + '?' +
                   `client_id=${this.oauthInfo.ClientID}` +
                   '&' +
-                  // `redirect_uri=${this.oauthInfo.Url}` +
-                  `redirect_uri=${
-                                  location.protocol + '//' + location.host +
-                                  location.pathname}` +
+                  `redirect_uri=${this.oauthInfo.Url}` +
+                  //   `redirect_uri=${
+                  //                   location.protocol + '//' + location.host
+                  //                   + location.pathname}` +
                   '&' +
                   `scope=${this.oauthInfo.Scope}`;
             };
