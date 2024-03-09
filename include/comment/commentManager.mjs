@@ -91,10 +91,10 @@ function splitPages(from, to, maxPerPage = DefaultConsts.maxPerPage) {
   const info = {per_page: maxPerPage, page: 0, num: 1};
   if (from + 1 >= to) {
     info.per_page = 1;
-    info.page = from + 1;
+    info.page = from;
   } else {
-    info.page = Math.round(from / maxPerPage);
-    info.num = Math.round(to / maxPerPage) - Math.round(from / maxPerPage) + 1;
+    info.page = Math.floor(from / maxPerPage);
+    info.num = Math.floor(to / maxPerPage) - Math.floor(from / maxPerPage) + 1;
   }
   return info;
 }
