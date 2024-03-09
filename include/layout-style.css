@@ -33,36 +33,44 @@ body {
     border-radius: 4px;
     padding: 5px;
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
 }
 
-.tool-bar-container .menu-icon {
-    width: var(--icon-size);
-    height: var(--icon-size);
-    background-image: url("../assets/icon/menu.png");
-    background-size: cover;
-    padding: 5px;
-    margin: 0 5px;
+.tool-bar-container .extend-icon,
+.tool-bar-container .menu-icon,
+.tool-bar-container .homepage-icon,
+.tool-bar-container .setting-icon {
+    /* width: var(--icon-size);
+    height: var(--icon-size); */
+    /* background-image: url("../assets/icon/menu.png");
+    background-size: cover; */
+    /* padding: 6px; */
+    /* margin: 0 5px; */
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;
+    display: flex;
+    flex-shrink: 1;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
 }
 
-.tool-bar-container .menu-icon:hover,
-.tool-bar-container .menu-icon.hover {
+
+.tool-bar-container .extend-icon:hover,
+.tool-bar-container .extend-icon.hover {
     background-color: #ddd;
 }
 
-
-.tool-bar-container .homepage {
-    width: var(--icon-size);
-    height: var(--icon-size);
-    background-image: url("../assets/icon/menu.png");
-    background-size: cover;
-    padding: 5px;
-    margin: 0 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    cursor: pointer;
+.tool-bar-container img {
+    /* width: var(--icon-size);
+    height: var(--icon-size); */
+    margin: auto;
+    height: 25px;
+    padding: 3px;
 }
 
 .tool-bar-container .tool-bar-contents-detailed {
@@ -205,14 +213,14 @@ body {
 }
 
 
-
 .comment-container {
     margin: 10px;
     border: 1px solid #ccc;
     border-radius: 10px;
     align-content: center;
 }
-.comment-container .comment-header{
+
+.comment-container .comment-header {
     width: 100%;
     padding: 10px;
     align-content: center;
@@ -220,18 +228,19 @@ body {
     background-color: #7772;
     font-weight: bold;
 }
-.comment-container .comment-contents{
+
+.comment-container .comment-contents {
     width: 100%;
     padding: 10px;
     align-content: center;
     min-height: 10px;
 }
-.comment-container .comment-footer{
+
+.comment-container .comment-footer {
     width: 100%;
     padding: 10px;
     align-content: center;
 }
-
 
 
 .page-foot-container::before {

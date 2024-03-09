@@ -211,7 +211,7 @@ function InitializeLayout() {
         });
     }
 
-    for (let el of document.getElementsByClassName("menu-icon")) {
+    for (let el of document.getElementsByClassName("extend-icon")) {
         el.addEventListener("click", () => {
             for (let el2 of document.getElementsByClassName("tool-bar-container")) {
                 el2.classList.toggle("hover");

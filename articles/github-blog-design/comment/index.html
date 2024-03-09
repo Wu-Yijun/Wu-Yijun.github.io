@@ -13,10 +13,10 @@
     <div class="body-container">
         <div class="tool-bar-container">
             <div class="tool-bar-contents">
-                <div class="menu-icon click-to-switch"></div>
-                <div class="homepage click-to-switch"></div>
-                <div class="homepage click-to-switch"></div>
-                <div class="homepage click-to-switch"></div>
+                <div class="extend-icon click-to-switch"><img src="/assets/icon/extend2.svg" style="scale: 0.8;"></div>
+                <div class="menu-icon click-to-switch"><img src="/assets/icon/homepage.svg" style="scale: 1.1;"></div>
+                <div class="homepage-icon click-to-switch"><img src="/assets/icon/menu.svg"></div>
+                <div class="setting-icon click-to-switch"><img src="/assets/icon/setting.svg"></div>
             </div>
             <div class="tool-bar-contents-detailed"></div>
         </div>
@@ -81,7 +81,8 @@
                 </div>
             </div>
             <div class="paragraphs-container">
-                <div class="paragraphs zh"> 关于评论区
+                <div class="paragraphs zh">
+                    <h3>关于评论区</h3>
                     <div>
                         因为我目前的打算是开放这个半成品的个人博客, 而开放的目的是得到互动和反馈,
                         那作为可以互动的评论区自然就充当了载体的功能. Github Pages 托管的是静态页面,
@@ -105,7 +106,8 @@
                         总的来说, 我的评论区在很多功能实现上都学习效仿了 Gitalk , 但是具有更强的<bold>可扩展性和灵活性</bold>
                     </div>
                 </div>
-                <div class="paragraphs zh"> 关于为什么我要开放评论区
+                <div class="paragraphs zh">
+                    <h3>关于为什么我要开放评论区</h3>
                     <div>
                         我上个学期(23~24秋)在写一个游戏, 当时使用的是 <bold>OpenGL</bold> + <bold>C++</bold>
                         手写渲染引擎. 本学期我在 UC Berkeley 访学, 连接到家里台式机的远程桌面<bold>延迟太高了, 代码写起来很不爽</bold>,
@@ -113,8 +115,19 @@
                         <italic>如果有机会能放到 Steam 上卖钱更好</italic>.
                     </div>
                     <div>
-                        "既然如此, 不如将游戏的开发过程写作博客, 作为我的博客的一个开端" 这样想着, 我
+                        "既然如此, 不如将游戏的开发过程写作博客, 作为我的博客的一个开端"
+                        这样想着, 我决定将这个只有一点点框架的 Blog 先填充一点最基本的功能用着, 之后再逐步完善全部功能.
+                        然后我发现, 框架再潦草都能用, 但是一些功能性的东西 (i.e. 导航, 留言板) 是不可缺少的, 于是就有了这个评论区的设想.
                     </div>
+                    <div>
+                        既然游戏是逐步构思逐步完成的, 把它放出来让人去看, 肯定会获得其他人的意见, 
+                        而这些宝贵的想法在设计游戏的过程中, 说不准就能发挥作用了.
+                        反正最后游戏都是要给人玩的, 那写了一半的程序, 自然也可以让人瞧见, 顺带还能督促我不要开发一半弃坑了. 
+                    </div>
+                </div>
+                <div class="paragraphs zh">
+                    <h3>关于评论区的设计过程</h3>
+                    <div>这个我有一个随意记录的 markdown 文件, 我之后有心情再放上来, 反正也没人想去看的. </div>
                 </div>
             </div>
             <div class="ending-container">
@@ -131,15 +144,15 @@
                     <div>评论区末尾</div>
                 </div>
                 <script type="module">
-                    // import commentManager from '/include/comment/commentManager.mjs';
-                    // const cm = new commentManager({
-                    //     htmlString: await (await fetch('/include/comment/comment-item.html')).text(),
-                    //     htmlTextarea: await (await fetch('/include/comment/comment-textarea-item.html')).text(),
-                    //     gitinfo: {
-                    //         Issue: '4',
-                    //         drawLoginIcon: true,
-                    //     },
-                    // });
+                    import commentManager from '/include/comment/commentManager.mjs';
+                    const cm = new commentManager({
+                        htmlString: await (await fetch('/include/comment/comment-item.html')).text(),
+                        htmlTextarea: await (await fetch('/include/comment/comment-textarea-item.html')).text(),
+                        gitinfo: {
+                            Issue: '4',
+                            drawLoginIcon: true,
+                        },
+                    });
                 </script>
             </div>
             <div class="page-foot-container">
