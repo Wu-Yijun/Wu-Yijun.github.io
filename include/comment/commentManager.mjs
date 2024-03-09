@@ -424,7 +424,7 @@ class GitControl {
     const header = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'random': String(Math.random()).substring(2),
+      // 'random': String(Math.random()).substring(2),
     };
     if (this.isAccessToken()) {
       header['Authorization'] = 'token ' + this.access_token;
