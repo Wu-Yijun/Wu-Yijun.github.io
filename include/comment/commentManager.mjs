@@ -556,6 +556,7 @@ class ReplyControl {
               `CommentTextareaCache[${id}]at<${encodeURIComponent(path)}>`,
               encodeURIComponent(textarea.innerHTML));
         };
+        myFloatingNotify("保存成功!");
       });
       const loadedText = localStorage.getItem(
           `CommentTextareaCache[${id}]at<${encodeURIComponent(path)}>`);
