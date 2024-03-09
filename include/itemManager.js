@@ -14,7 +14,7 @@ const MyStaticConsts = {
 };
 
 class TagManager {
-    constructor(url = "./include/tags.json") {
+    constructor(url = "/include/tags.json") {
         // 申明一个XMLHttpRequest
         var request = new XMLHttpRequest();
         // 设置请求方法与路径
